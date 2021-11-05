@@ -135,11 +135,30 @@ namespace C_sharp_tasks
             return digital_root(sum);
         }
     }
+    
     public class Task4
     {
-        public int count_pair_target_sum(int[] inp)
+        [Test]
+        public void Test1()
         {
-
+            int[] inp = { 1, 1, 1, 1, 1, 1 };
+            Assert.AreEqual(count_pair_target_sum(inp, 2), 15);
+        }
+        [Test]
+        public void Test2()
+        {
+            int[] inp = { 1, 3, 6, 2, 2, 0, 4, 5 };
+            Assert.AreEqual(count_pair_target_sum(inp, 5), 4);
+        }
+        public int count_pair_target_sum(int[] inp, int target)
+        {
+            int cnt = 0;
+            for(int i=0;i<inp.Length-1;i++)
+                for(int j = i+1;j<inp.Length;j++)
+                    if (inp[i] + inp[j] == target)
+                        cnt++;
+            
+            return cnt;
         }
     }
 }
