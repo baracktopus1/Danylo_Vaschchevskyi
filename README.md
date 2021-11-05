@@ -1,1 +1,0 @@
-# Danylo_Vaschchevskyi
