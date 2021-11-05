@@ -135,4 +135,11 @@ namespace C_sharp_tasks
             return digital_root(sum);
         }
     }
+    public class Task4
+    {
+        public int count_pair_target_sum(int[] inp)
+        {
+
+        }
+    }
 }
