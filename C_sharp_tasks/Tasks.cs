@@ -161,4 +161,41 @@ namespace C_sharp_tasks
             return cnt;
         }
     }
+
+    public class Task5
+    {
+        [Test]
+        public void Test1()
+        {
+            string inp = "Fred:Corwill;Wilfred:Corwill;Barney:TornBull;Betty:Tornbull;Bjon:Tornbull;Raphael:Corwill;Alfred:Corwill";
+            Assert.AreEqual(happy_list(inp), "(CORWILL, ALFRED)(CORWILL, FRED)(CORWILL, RAPHAEL)(CORWILL, WILFRED)(TORNBULL, BARNEY)(TORNBULL, BETTY)(TORNBULL, BJON)");
+        }
+        [Test]
+        public void Test2()
+        {
+            string inp = "AAB:A;AAC:A;AAA:A;A:AA;A:AA";
+            Assert.AreEqual(happy_list(inp), "(A, AAA)(A, AAB)(A, AAC)(AA, A)(AA, A)");
+        }
+        public string happy_list(string inp)
+        {
+            List<Tuple<string, string>> names = new List<Tuple<string, string>>();
+            string[] full_names = inp.Split(';');
+            foreach(string x in full_names)
+            {
+                names.Add(new Tuple<string, string>
+                    (x.Split(':')[1].ToUpper(), x.Split(':')[0].ToUpper()));
+            }
+            names.Sort((x, y) =>
+            {
+                int result = x.Item1.CompareTo(y.Item1);
+                return result == 0 ? x.Item2.CompareTo(y.Item2) : result;
+            });
+            string str = "";
+            foreach(Tuple<string,string> x in names)
+            {
+                str += x.ToString();
+            }
+            return str;
+        }
+    }
 }
