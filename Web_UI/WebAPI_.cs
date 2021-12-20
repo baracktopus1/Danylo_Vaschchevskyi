@@ -19,7 +19,7 @@ namespace WebAPI___
             Upload();
 
             GetMetadata();
-            string str = File.ReadAllText("Metadata.txt");
+            string str = File.ReadAllText("Data/Metadata.txt");
             string[] str1 = str.Split(",");
             bool flag = false;
             foreach (string x in str1){
@@ -43,7 +43,7 @@ namespace WebAPI___
             request.AddHeader("Content-Type", "application/octet-stream");
             request.AddHeader("data-binary", "@local_file.txt");
            
-            request.AddBody("file", "thing.txt");
+            request.AddBody("file", "Data/thing.txt");
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
 
@@ -52,10 +52,11 @@ namespace WebAPI___
         [Test]
         public void TestDelete()
         {
+            File.WriteAllText("Data/thing.txt", "RODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIP");
             Delete();
 
             GetMetadata();
-            string str = File.ReadAllText("Metadata.txt");
+            string str = File.ReadAllText("Data/Metadata.txt");
             string[] str1 = str.Split(",");
             bool flag = false;
             foreach (string x in str1)
@@ -83,13 +84,15 @@ namespace WebAPI___
         [Test]
         public void TestMetadata()
         {
+            File.WriteAllText("Data/thing.txt", "RODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIP");
             GetMetadata();
 
-            Assert.IsTrue(File.Exists("Metadata.txt"));
+            Assert.IsTrue(File.Exists("Data/Metadata.txt"));
 
         }
         public void GetMetadata()
         {
+            File.WriteAllText("Data/thing.txt", "RODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIPRODIP");
             var client = new RestClient("https://api.dropboxapi.com/2/files/get_metadata");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
@@ -110,7 +113,7 @@ namespace WebAPI___
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
-            File.WriteAllText("Metadata.txt",response.Content.ToString());
+            File.WriteAllText("Data/Metadata.txt",response.Content.ToString());
         }
     }
 }
