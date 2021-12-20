@@ -19,7 +19,7 @@ namespace WebAPI___
             Upload();
 
             GetMetadata();
-            string str = File.ReadAllText("Data/Metadata.txt");
+            string str = File.ReadAllText("Metadata.txt");
             string[] str1 = str.Split(",");
             bool flag = false;
             foreach (string x in str1){
@@ -43,7 +43,7 @@ namespace WebAPI___
             request.AddHeader("Content-Type", "application/octet-stream");
             request.AddHeader("data-binary", "@local_file.txt");
            
-            request.AddBody("file", "Data/thing.txt");
+            request.AddBody("file", "thing.txt");
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
 
@@ -55,7 +55,7 @@ namespace WebAPI___
             Delete();
 
             GetMetadata();
-            string str = File.ReadAllText("Data/Metadata.txt");
+            string str = File.ReadAllText("Metadata.txt");
             string[] str1 = str.Split(",");
             bool flag = false;
             foreach (string x in str1)
@@ -85,7 +85,7 @@ namespace WebAPI___
         {
             GetMetadata();
 
-            Assert.IsTrue(File.Exists("Data/Metadata.txt"));
+            Assert.IsTrue(File.Exists("Metadata.txt"));
 
         }
         public void GetMetadata()
@@ -110,7 +110,7 @@ namespace WebAPI___
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
-            File.WriteAllText("Data/Metadata.txt",response.Content.ToString());
+            File.WriteAllText("Metadata.txt",response.Content.ToString());
         }
     }
 }
